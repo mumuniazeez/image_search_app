@@ -7,14 +7,14 @@
 [data-theme=light] {
   --switch-white: #ffffff;
   --switch-black: #000000;
-  --switch-e6e6e6: #e6e6e6;
+  --switch-acacac: #d6d5d5;
   transition: all 1s;
 }
 
 [data-theme=dark] {
   --switch-white: #000000;
   --switch-black: #ffffff;
-  --switch-e6e6e6: #3f3e3e;
+  --switch-acacac: #3a3a3a;
   transition: all 1s;
 }
 
@@ -25,7 +25,7 @@ body {
 header {
   box-sizing: border-box;
   width: 100%;
-  background-color: var(--switch-e6e6e6);
+  background-color: var(--switch-acacac);
   height: 100px;
 }
 header .search-bar {
@@ -116,7 +116,7 @@ header nav .theme-btn .light-theme-btn {
 }
 .hero .wrapper .container .image-info {
   margin-top: 0px;
-  background-color: var(--switch-e6e6e6);
+  background-color: var(--switch-acacac);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   padding: 15px;
@@ -137,7 +137,7 @@ header nav .theme-btn .light-theme-btn {
   margin-top: 20vh;
 }
 .hero .loading-animation .rotator, .hero .error .rotator {
-  background-color: var(--switch-e6e6e6);
+  background-color: var(--switch-acacac);
   width: 200px;
   height: 200px;
   border-radius: 100px;
@@ -164,17 +164,21 @@ header nav .theme-btn .light-theme-btn {
   -webkit-animation: rotate 2s infinite ease-in-out;
           animation: rotate 2s infinite ease-in-out;
 }
-.hero .loading-animation .error-text, .hero .error .error-text {
+.hero .error {
+  text-align: center;
+}
+.hero .error .error-text {
   color: var(--switch-black);
 }
-.hero .loading-animation .try-again-btn, .hero .error .try-again-btn {
-  background-color: var(--switch-e6e6e6);
+.hero .error .try-again-btn {
+  background-color: var(--switch-acacac);
   color: var(--switch-black);
   border: none;
   border-radius: 5px;
   padding: 10px;
-  margin: 20px 0 0 65px;
+  text-align: center;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 @media all and (max-width: 915px) {
@@ -206,7 +210,7 @@ header nav .theme-btn .light-theme-btn {
     width: 120px;
     border: var(--switch-black) 2.5px solid;
     border-radius: 15px;
-    background-color: var(--switch-e6e6e6);
+    background-color: var(--switch-acacac);
     text-align: center;
   }
   header .search-bar #search-input {

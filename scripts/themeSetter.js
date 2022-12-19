@@ -1,15 +1,15 @@
-const darkThemeBtn = document.querySelector(".dark-theme-btn")
-const lightThemeBtn = document.querySelector(".light-theme-btn")
-const bodyEl = document.querySelector("body")
+const darkThemeBtn = document.querySelector(".dark-theme-btn");
+const lightThemeBtn = document.querySelector(".light-theme-btn");
+const bodyEl = document.querySelector("body");
 
 darkThemeBtn.addEventListener("click", () => {
-    localStorage.setItem("darkTheme", true)
+    localStorage.setItem("darkTheme", true);
     toggleDarkTheme();
-})
+});
 lightThemeBtn.addEventListener("click", () => {
-    localStorage.removeItem("darkTheme")
+    localStorage.removeItem("darkTheme");
     toggleLightTheme();
-})
+});
 
 const toggleLightTheme = () => {
     bodyEl.setAttribute("data-theme", "light");
@@ -24,7 +24,7 @@ const toggleDarkTheme = () => {
 }
 const toggleSavedTheme = () => {
     let darkTheme = localStorage.getItem("darkTheme");
-    darkTheme ? toggleDarkTheme() : toggleLightTheme()
+    darkTheme ? toggleDarkTheme() : toggleLightTheme();
 }
 
 toggleSavedTheme();

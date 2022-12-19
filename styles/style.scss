@@ -7,14 +7,14 @@
 [data-theme="light"]{
     --switch-white: #ffffff;
     --switch-black: #000000;
-    --switch-e6e6e6: #e6e6e6;
+    --switch-acacac: #d6d5d5;
     transition: all 1s;
 }
 
 [data-theme="dark"]{
     --switch-white: #000000;
     --switch-black: #ffffff;
-    --switch-e6e6e6: #3f3e3e;
+    --switch-acacac: #3a3a3a;
     transition: all 1s;
 }
 
@@ -25,7 +25,7 @@ body{
 header{
     box-sizing: border-box;
     width: 100%;
-    background-color: var(--switch-e6e6e6);
+    background-color: var(--switch-acacac);
     height: 100px;
     .search-bar{
         display: flex;
@@ -129,7 +129,7 @@ header{
 
             .image-info{
                 margin-top: 0px;
-                background-color: var(--switch-e6e6e6);
+                background-color: var(--switch-acacac);
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
                 padding: 15px;
@@ -154,7 +154,7 @@ header{
         margin-top: 20vh;
 
         .rotator{
-            background-color: var(--switch-e6e6e6);
+            background-color: var(--switch-acacac);
             width: 200px;
             height: 200px;
             border-radius: 100px;
@@ -185,17 +185,22 @@ header{
         .rotate{
             animation: rotate 2s infinite ease-in-out;
         }
+    }
+    .error{
+        text-align: center;
+        
         .error-text{
             color: var(--switch-black);
         }
         .try-again-btn{
-            background-color: var(--switch-e6e6e6);
+            background-color: var(--switch-acacac);
             color: var(--switch-black);
             border: none;
             border-radius: 5px;
             padding: 10px;
-            margin: 20px 0 0 65px;
+            text-align: center;
             cursor: pointer;
+            margin-top: 20px;
         }
     }
 }
@@ -238,7 +243,7 @@ header{
                 width: 120px;
                 border: var(--switch-black) 2.5px solid;
                 border-radius: 15px;
-                background-color: var(--switch-e6e6e6);
+                background-color: var(--switch-acacac);
                 text-align: center;
             }
 

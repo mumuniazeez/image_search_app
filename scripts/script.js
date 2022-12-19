@@ -8,15 +8,17 @@ const searchBtn = document.querySelector("#search-btn");
 
 let clientID = "I7UJNPETzz1J6zV4JP6R9sV4b2yDRfap60HIRXN40hE"
 
+
 const time = ["popular", "latest"]
 const page = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 let randomTime = Math.random() * time.length
 let randomTimeIndex = ~~randomTime
 let randomPage = Math.random() * page.length
 let randomPageIndex = ~~randomPage
+let url = `https://api.unsplash.com/photos/?page=${page[randomPageIndex]}&order_by=${time[randomTimeIndex]}&client_id=${clientID}`
 
 
-let randomImageURL = `https://api.unsplash.com/photos/?page=${page[randomPageIndex]}&order_by=${time[randomTimeIndex]}&client_id=${clientID}`
+
 
 let loadingAnimation = `
     <div class="loading-animation">
@@ -28,8 +30,7 @@ let loadingAnimation = `
 `
 
 function showError(callBackFn, query) {
-    if (query !== "undefined"){
-        console.log(query)
+    if (query){
         let errorText = `
         <div class="error">
             <h1 class="error-text">Unable to search for "${query}".</h1>
@@ -49,34 +50,26 @@ function showError(callBackFn, query) {
     }
 }
 
-async function searchImage(query) {
-    imageMotherContainer.innerHTML = loadingAnimation
-    let queryImageURL = `https://api.unsplash.com/search/photos/?query=${query}&client_id=${clientID}`
-    try {
-        const res = await fetch(queryImageURL);
-        const data = await res.json();
-            showImageOnPage(data)
-    } catch (err) {
-        setTimeout(() => {
-            imageMotherContainer.innerHTML = showError(`searchImage('${query}')`, query)
-        }, 3000)    
-    }
-
-}
 
 
-const showImageOnPage = data => {
-    console.log(data);
+const showImageOnPage = (data, query) => {
+    let result = ""
     if (data.results) {
         data = data.results
+        result = `
+        <h1>Showing result for "${query}"</h1>
+        `
+        imageContainer.innerHTML = result;
+        imageMotherContainer.innerHTML = ""
+        imageMotherContainer.append(imageContainer);
+
     }
-    let result = ""
         data.forEach(image => {
             if (image.description == null) {
                 image.description = image.alt_description
                 if (image.alt_description == null) {
                     image.description = "No description."
-
+                    
                 }
             }
             result += `
@@ -91,21 +84,20 @@ const showImageOnPage = data => {
                     <p class="description">${image.description}</p>
                     <p class="likes">Likes: ${image.likes}</p>
                     <div class="download-btn">
-                        <a href="${image.urls.small}" class="download" download="Your awesome image">Download</a>
+                    <a href="${image.urls.small}" class="download" download="Your awesome image">Download</a>
                     </div>  
-                </div>
+                    </div>
             </div>
             `
             setTimeout(() => {
-                imageContainer.innerHTML = result;
+                imageContainer.innerHTML += result;
                 imageMotherContainer.innerHTML = ""
                 imageMotherContainer.append(imageContainer);
             }, 3000)
         });
-}
-
-
-async function getRandomData(url) {
+    }
+    
+async function getRandomData(url = "") {
     imageMotherContainer.innerHTML = loadingAnimation
     try {
         const res = await fetch(url);
@@ -113,25 +105,39 @@ async function getRandomData(url) {
         showImageOnPage(data)
     } catch (err) {
         setTimeout(() => {
-            imageMotherContainer.innerHTML = showError("getRandomData(randomImageURL)")
-        }, 3000)
+            imageMotherContainer.innerHTML = showError("getRandomData(url)")
+        }, 2000)
     }
 }
+async function searchImage(query) {
+    imageMotherContainer.innerHTML = loadingAnimation
+    let queryImageURL = `https://api.unsplash.com/search/photos/?query=${query}&client_id=${clientID}`
+    try {
+        const res = await fetch(queryImageURL);
+        const data = await res.json();
+            showImageOnPage(data, query)
+    } catch (err) {
+        setTimeout(() => {
+            console.log(err);
+            imageMotherContainer.innerHTML = showError(`searchImage('${query}')`, query)
+        }, 2000)    
+    }
 
+}
+
+    
 searchBtn.addEventListener("click", () => {
     imageMotherContainer.innerHTML = loadingAnimation
     let query = searchInput.value
     console.log(query)
     searchImage(query)
 })
-
-getRandomData(randomImageURL);
-
 searchInput.addEventListener("keypress", (e) => {
     if (e.key == "Enter") {
         imageMotherContainer.innerHTML = loadingAnimation
         let query = searchInput.value
         console.log(query)
-        searchImage(query)  
+        searchImage(query)
     }
 })
+getRandomData(url);
