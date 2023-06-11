@@ -20,6 +20,7 @@
 
 body {
   background-color: var(--switch-white);
+  color: var(--switch-black);
 }
 
 header {
@@ -77,18 +78,20 @@ header nav .theme-btn {
 header nav .theme-btn .dark-theme-btn {
   background-color: black;
   color: white;
-  padding: 15px;
+  padding: 5px;
   border-radius: 15px;
   cursor: pointer;
+  font-size: 24pt;
 }
 header nav .theme-btn .light-theme-btn {
   background-color: white;
   color: black;
-  padding: 15px;
+  padding: 5px;
   border-radius: 15px;
   border: white 2px solid;
-  display: none;
   cursor: pointer;
+  font-size: 24pt;
+  display: none;
 }
 
 .hero {
@@ -96,14 +99,23 @@ header nav .theme-btn .light-theme-btn {
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  flex-direction: column;
+}
+.hero h1 {
+  font-size: 24pt;
+  margin-bottom: 30px;
 }
 .hero .wrapper {
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, auto);
 }
 .hero .wrapper .container {
   border: 2px solid var(--switch-black);
   border-radius: 20px;
+  width: 400px;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .hero .wrapper .container .image-container {
   margin-bottom: 0px;
@@ -112,6 +124,8 @@ header nav .theme-btn .light-theme-btn {
   border: 1px solid var(--switch-black);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  width: 400px;
+  height: 300px;
   margin: 0;
 }
 .hero .wrapper .container .image-info {
@@ -132,6 +146,7 @@ header nav .theme-btn .light-theme-btn {
   padding: 8px;
   border-radius: 15px;
   text-decoration: none;
+  border: none;
 }
 .hero .loading-animation, .hero .error {
   margin-top: 20vh;
@@ -161,8 +176,7 @@ header nav .theme-btn .light-theme-btn {
   color: var(--switch-black);
 }
 .hero .loading-animation .rotate, .hero .error .rotate {
-  -webkit-animation: rotate 2s infinite ease-in-out;
-          animation: rotate 2s infinite ease-in-out;
+  animation: rotate 2s infinite ease-in-out;
 }
 .hero .error {
   text-align: center;
@@ -181,9 +195,19 @@ header nav .theme-btn .light-theme-btn {
   margin-top: 20px;
 }
 
+@media all and (max-width: 1267px) {
+  .hero .wrapper {
+    grid-template-columns: repeat(2, auto);
+  }
+}
 @media all and (max-width: 915px) {
   header .search-bar {
     width: 500px;
+  }
+}
+@media all and (max-width: 848px) {
+  .hero .wrapper {
+    grid-template-columns: repeat(1, auto);
   }
 }
 @media all and (max-width: 697px) {
@@ -197,6 +221,17 @@ header nav .theme-btn .light-theme-btn {
   }
   .hero {
     margin: 150px auto 0 auto;
+  }
+}
+@media all and (max-width: 434px) {
+  .hero .wrapper .container {
+    width: 300px;
+  }
+  .hero .wrapper .container .image-container .image {
+    width: 300px;
+  }
+  .hero .wrapper .container .image-info .download-btn .download {
+    margin-bottom: 10px;
   }
 }
 @media all and (max-width: 311px) {
@@ -216,20 +251,6 @@ header nav .theme-btn .light-theme-btn {
   header .search-bar #search-input {
     border: var(--switch-black) 2.5px solid;
     border-radius: 15px;
-  }
-}
-@-webkit-keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-    background: linear-gradient(25deg, var(--switch-black), var(--switch-white));
-  }
-  50% {
-    transform: rotate(360deg);
-    background: linear-gradient(50deg, var(--switch-black), var(--switch-white));
-  }
-  100% {
-    transform: rotate(720deg);
-    background: linear-gradient(25deg, var(--switch-black), var(--switch-white));
   }
 }
 @keyframes rotate {

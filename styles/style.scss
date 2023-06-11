@@ -20,6 +20,7 @@
 
 body{
     background-color: var(--switch-white);
+    color: var(--switch-black);
 }
 
 header{
@@ -81,18 +82,20 @@ header{
             .dark-theme-btn{
                 background-color: black;
                 color: white;
-                padding: 15px;
+                padding: 5px;
                 border-radius: 15px;
                 cursor: pointer;
+                font-size: 24pt;
             }
             .light-theme-btn{
                 background-color: white;
                 color: black;
-                padding: 15px;
+                padding: 5px;
                 border-radius: 15px;
                 border: white 2px solid;
-                display: none;
                 cursor: pointer;
+                font-size: 24pt;
+                display: none;
             }
         }
     }
@@ -102,16 +105,23 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;    
+    margin-top: 50px;  
+    flex-direction: column;
+    
+    h1 {
+        font-size: 24pt;
+        margin-bottom: 30px;
+    }
     .wrapper{
         display: grid;
-        grid-gap: 15px;
-        // grid-template-columns: repeat(auto);
-        // grid-template-rows: repeat(auto);
+        grid-gap: 20px;
+        grid-template-columns: repeat(3, auto);
 
         .container{
             border: 2px solid var(--switch-black);
             border-radius: 20px;
+            width: 400px;
+            height: fit-content;
 
             .image-container{
                 // width: auto;
@@ -121,8 +131,8 @@ header{
                     border: 1px solid var(--switch-black);
                     border-top-left-radius: 20px;
                     border-top-right-radius: 20px;
-                    // width: auto;
-                    // height: auto;
+                    width: 400px;
+                    height: 300px;
                     margin: 0;
                 }
             }
@@ -138,13 +148,14 @@ header{
                 .download-btn{
                     margin-top: 15px;
                     margin-left: auto;
-
+                    
                     .download{
                         color: var(--switch-white);
                         background-color: var(--switch-black);
                         padding: 8px;
                         border-radius: 15px;
                         text-decoration: none;
+                        border: none;
                     }
                 }
             }
@@ -205,11 +216,27 @@ header{
     }
 }
 
+@media all and (max-width: 1267px) {
+    .hero{
+        .wrapper{
+            grid-template-columns: repeat(2, auto);
+        }
+    
+    }
+}
 @media all and (max-width: 915px) {
     header{
         .search-bar{
             width: 500px;
         }
+    }
+}
+@media all and (max-width: 848px) {
+    .hero{
+        .wrapper{
+            grid-template-columns: repeat(1, auto);
+        }
+    
     }
 }
 @media all and (max-width: 697px) {
@@ -228,7 +255,28 @@ header{
     }
     .hero{
         margin: 150px auto 0 auto;    
-
+        
+    }
+}
+@media all and (max-width: 434px) {
+    .hero{
+        .wrapper{
+            .container{
+                width: 300px;
+                .image-container{
+                    .image{
+                        width: 300px;
+                    }
+                }
+                .image-info{
+                    .download-btn{
+                        .download{
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

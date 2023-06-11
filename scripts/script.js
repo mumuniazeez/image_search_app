@@ -1,5 +1,5 @@
 let imageMotherContainer = document.querySelector(".hero")
-let imageContainer = document.createElement("div")
+let imageContainer = document.createElement("div");
 imageContainer.className = "wrapper"
 // /search/photos
 
@@ -53,49 +53,48 @@ function showError(callBackFn, query) {
 
 
 const showImageOnPage = (data, query) => {
+    let searchText = ""
     let result = ""
+    let img;
     if (data.results) {
         data = data.results
-        result = `
+        searchText = `
         <h1>Showing result for "${query}"</h1>
         `
-        imageContainer.innerHTML = result;
-        imageMotherContainer.innerHTML = ""
-        imageMotherContainer.append(imageContainer);
-
     }
-        data.forEach(image => {
-            if (image.description == null) {
-                image.description = image.alt_description
-                if (image.alt_description == null) {
-                    image.description = "No description."
-                    
-                }
+    data.forEach(image => {
+        if (image.description == null) {
+            image.description = image.alt_description
+            if (image.alt_description == null) {
+                image.description = "No description."
+                
             }
-            result += `
+        }
+        console.log(image);
+        result += `
             <div class="container" id="${image.id}">
                 <div class="image-container">
-                    <img src="${image.urls.small}" alt="${image.description}" loading="lazy" class="image"
-                    sizes="(min-width: 1335px) 416px, (min-width: 992px) calc(calc(100vw - 72px) / 3), (min-width: 768px) calc(calc(100vw - 48px) / 2), 100vw"
-                    style="height: ${image.height}; width: ${image.width};"
-                    >
+                    <img src="${image.urls.small}" alt="${image.description}" class="image">
                 </div>
                 <div class="image-info">
                     <p class="description">${image.description}</p>
                     <p class="likes">Likes: ${image.likes}</p>
                     <div class="download-btn">
-                    <a href="${image.urls.small}" class="download" download="Your awesome image">Download</a>
-                    </div>  
+                        <button class="download" download="Your awesome image" onclick='downloadImage("${image.urls.full}")'>Download Full</button>
+                        <button class="download" download="Your awesome image" onclick='downloadImage("${image.urls.regular}")'>Download Regular</button>
+                        <button class="download" download="Your awesome image" onclick='downloadImage("${image.urls.small}")'>Download Small</button>
                     </div>
+                </div>
             </div>
-            `
-            setTimeout(() => {
-                imageContainer.innerHTML += result;
-                imageMotherContainer.innerHTML = ""
-                imageMotherContainer.append(imageContainer);
-            }, 3000)
-        });
-    }
+        `
+    });
+    setTimeout(() => {
+        imageContainer.innerHTML = result;
+        imageMotherContainer.innerHTML = ""
+        imageMotherContainer.innerHTML = searchText;
+        imageMotherContainer.append(imageContainer);
+    }, 3000);
+}
     
 async function getRandomData(url = "") {
     imageMotherContainer.innerHTML = loadingAnimation
@@ -106,11 +105,11 @@ async function getRandomData(url = "") {
     } catch (err) {
         setTimeout(() => {
             imageMotherContainer.innerHTML = showError("getRandomData(url)")
-        }, 2000)
+        }, 2000);
     }
 }
 async function searchImage(query) {
-    imageMotherContainer.innerHTML = loadingAnimation
+    imageMotherContainer.innerHTML = loadingAnimation;
     let queryImageURL = `https://api.unsplash.com/search/photos/?query=${query}&client_id=${clientID}`
     try {
         const res = await fetch(queryImageURL);
@@ -128,7 +127,7 @@ async function searchImage(query) {
     
 searchBtn.addEventListener("click", () => {
     imageMotherContainer.innerHTML = loadingAnimation
-    let query = searchInput.value
+    let query = searchInput.value;
     console.log(query)
     searchImage(query)
 })
@@ -141,3 +140,25 @@ searchInput.addEventListener("keypress", (e) => {
     }
 })
 getRandomData(url);
+
+function downloadImage(url) {
+    const canvas = document.createElement("canvas");
+    const a = document.createElement("a");
+    const img = document.createElement("img");
+    const ctx = canvas.getContext("2d");
+    img.src = url;
+    console.log(img.width);
+
+    img.addEventListener("load", (e) => {
+        e.preventDefault();
+        img.crossOrigin = "anonymous";
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        a.href = canvas.toDataURL("image/jpeg");
+        a.download = new Date().getTime();
+        a.click();
+    })
+}
