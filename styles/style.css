@@ -82,6 +82,7 @@ header nav .theme-btn .dark-theme-btn {
   border-radius: 15px;
   cursor: pointer;
   font-size: 24pt;
+  border: none;
 }
 header nav .theme-btn .light-theme-btn {
   background-color: white;
@@ -91,6 +92,7 @@ header nav .theme-btn .light-theme-btn {
   border: white 2px solid;
   cursor: pointer;
   font-size: 24pt;
+  border: none;
   display: none;
 }
 
@@ -104,6 +106,7 @@ header nav .theme-btn .light-theme-btn {
 .hero h1 {
   font-size: 24pt;
   margin-bottom: 30px;
+  text-align: center;
 }
 .hero .wrapper {
   display: grid;
@@ -147,6 +150,7 @@ header nav .theme-btn .light-theme-btn {
   border-radius: 15px;
   text-decoration: none;
   border: none;
+  cursor: pointer;
 }
 .hero .loading-animation, .hero .error {
   margin-top: 20vh;

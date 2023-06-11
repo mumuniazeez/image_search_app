@@ -86,6 +86,7 @@ header{
                 border-radius: 15px;
                 cursor: pointer;
                 font-size: 24pt;
+                border: none;
             }
             .light-theme-btn{
                 background-color: white;
@@ -95,6 +96,7 @@ header{
                 border: white 2px solid;
                 cursor: pointer;
                 font-size: 24pt;
+                border: none;
                 display: none;
             }
         }
@@ -111,6 +113,7 @@ header{
     h1 {
         font-size: 24pt;
         margin-bottom: 30px;
+        text-align: center;
     }
     .wrapper{
         display: grid;
@@ -156,6 +159,7 @@ header{
                         border-radius: 15px;
                         text-decoration: none;
                         border: none;
+                        cursor: pointer;
                     }
                 }
             }
